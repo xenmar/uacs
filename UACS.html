@@ -1,0 +1,101 @@
+<html>
+<head> <title>UACS</title></head>
+<style>
+#main {
+	width: 1000px;
+	padding: 20px;
+	margin: auto;
+}
+
+table.uacs{
+	margin: auto;
+	border-collapse: collapse;
+	
+}
+
+table.uacs caption {
+	background-color: #f79646;
+	color: #fff;
+	font-size: 150%;
+	font-weight: bold;
+	
+}
+
+table.uacs thead th {
+	padding: 8px;
+	background-color: #fde9d9;
+	font-size: large;
+}
+
+table.uacs thead th#thUACS {
+	width:100%;	
+}
+
+table.uacs thead th#thDepartment{
+	width:60%;
+}
+
+table.uacs thead th#thAgency {
+	width:90%;
+ }
+
+table.uacs th, table.uacs td {
+	padding: 3px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #FCFCFC ;
+}
+
+table.uacs td {
+	text-align: left;
+}
+
+table.uacs tbody th {
+	text-align: left;
+	font-weight: 900;
+}
+table.uacs tr.even {
+	background-color: #29F3EC;
+}
+</style>
+<head>
+</head>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js"> </script>
+	<script>
+		function onLoad(){
+			var url="http://igovphil.github.io/java-exam-01/uacs-agency.json";
+			$.getJSON(url, function(json){
+				var table = $('<table class="uacs">');
+				
+				var tr = $('<tr>');
+				var td = $('<th id="thUACS"></th>');
+				td.html("UACS");
+				tr.append(td);
+				td = $('<th id="thDepartment"></th>');
+				td.html('Department');
+				tr.append(td);
+				td = $('<th id="thAgency"></th>');
+				td.html('Agency');
+				tr.append(td);
+				table.append(tr);
+				for( var i=0; i<json.length;i++){
+					var tr = $('<tr class="even">');
+					var td = $('<td>');
+					td.html(json[i].uacs);
+					tr.append(td);
+					td = $('<td>');
+					td.html(json[i].department);
+					tr.append(td);
+					td = $('<td>');
+					td.html(json[i].agency);
+					tr.append(td);
+					table.append(tr);
+				}
+				$('body').append(table);
+			});
+		}
+	</script>
+<body  onload ="onLoad();">
+</body>
+</html>
